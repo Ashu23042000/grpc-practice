@@ -1,0 +1,26 @@
+syntax="proto3";
+
+package greet_service;
+
+option go_package = "./proto";
+
+service UserService{
+    rpc createUser(User) returns (CreatedUser);
+    rpc greetUser(User) returns (stream GreetResponse);
+    rpc greetMany(stream User) returns (GreetResponse);
+    rpc greetManyWithMultipleGreet(stream User) returns (stream GreetResponse);
+}
+
+message User{
+    string name = 1;
+    string email= 2;
+}
+
+message CreatedUser{
+    string name =1;
+    string email= 2;
+}
+
+message GreetResponse{
+    string result =1;
+}
